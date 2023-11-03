@@ -89,10 +89,8 @@ export default function Header(props) {
         <AppBar color="default">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <TheatersIcon
-                sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-                color="error"
-              />
+             
+              <img src="./logo.jpg" width={40} height={40}/>
               <Typography
                 variant="h6"
                 noWrap
@@ -102,9 +100,9 @@ export default function Header(props) {
                   mr: 2,
                   display: { xs: "none", md: "flex" },
                   fontFamily: "monospace",
-                  fontWeight: 700,
+                  fontWeight: 900,
                   letterSpacing: ".3rem",
-                  color: "#d32f2f",
+                  color: "#3295b3",
                   textDecoration: "none",
                 }}
               >
@@ -174,7 +172,7 @@ export default function Header(props) {
                   fontFamily: "monospace",
                   fontWeight: 700,
                   letterSpacing: ".3rem",
-                  color: "#d32f2f",
+                  color: "#3f2fd3",
                   textDecoration: "none",
                 }}
               >
@@ -221,13 +219,14 @@ export default function Header(props) {
                         sx={{
                           p: 0,
                           "&:hover": {
-                            color: "rgb(211, 47, 47) ",
+                            color: "#3f2fd3",
                             backgroundColor: "transparent",
                           },
                         }}
                       >
-                        <AccountCircle fontSize="large" />
-                        <Typography>{currentUser.hoTen}</Typography>
+                       
+                        <img src="./logo.jpg" width={40} height={40}/>
+                        <Typography sx={{ color: "#3295b3",  fontWeight: 700,}}> Welcome {currentUser.hoTen} !</Typography>
                       </IconButton>
                     </Tooltip>
                     <Menu
@@ -260,7 +259,7 @@ export default function Header(props) {
                   <IconButton
                     sx={{
                       "&:hover": {
-                        color: "rgb(211, 47, 47) ",
+                        color: "#3f2fd3",
                         backgroundColor: "transparent",
                       },
                     }}
@@ -275,7 +274,7 @@ export default function Header(props) {
                   {/* Signin */}
                   <Box sx={{ flexGrow: 0 }}>
                     <SigninAndSignup
-                      onClick={() => navigate(`/sign-in`)}
+                      onClick={() => navigate(`/signin`)}
                       borderRight="1px solid #9e9e9e"
                     >
                       <Tooltip title="Đăng nhập">
@@ -287,7 +286,7 @@ export default function Header(props) {
 
                   {/* Signup */}
                   <Box sx={{ flexGrow: 0 }}>
-                    <SigninAndSignup onClick={() => navigate(`/sign-up`)}>
+                    <SigninAndSignup onClick={() => navigate(`/signup`)}>
                       <Tooltip title="Đăng kí">
                         <AccountCircle fontSize="large" />
                       </Tooltip>

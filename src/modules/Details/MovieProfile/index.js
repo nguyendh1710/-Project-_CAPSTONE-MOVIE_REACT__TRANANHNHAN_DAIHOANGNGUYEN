@@ -1,1 +1,1 @@
-export {default} from "./MovieProfile"
+export {default} from './MovieProfile'

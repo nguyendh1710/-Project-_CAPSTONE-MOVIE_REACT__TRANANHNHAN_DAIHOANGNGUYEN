@@ -1,4 +1,3 @@
-
 import React from "react";
 import { BackGroundFooter } from "../styed/styledBg";
 import { Box, Container, Grid } from "@mui/material";
@@ -10,8 +9,6 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import FaceBook from "@mui/icons-material/Facebook";
 import Facebook from "@mui/icons-material/Facebook";
 
-
-
 export default function Footer() {
   const { data = [], isLoading } = useQuery({
     queryKey: ["footerCinema"],
@@ -19,97 +16,130 @@ export default function Footer() {
   });
 
   return (
-    <BackGroundFooter>
-      <Container>
-        <Box
-          sx={{ display: "flex" }}
-          justifyContent={"space-evenly"}
-          maxWidth={"33,3%"}
-        >
-          <Box>
-            <TextTitle as="h6" color="white" fs="12px">
-              TIX
-            </TextTitle>
-            <Grid
-              container
-              rowSpacing={1}
-              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-            >
-              <Grid item xs={5}>
-                <TextFooter fs="12px" textdecoration="none">
-                  FAQ
-                </TextFooter>
-              </Grid>
-              <Grid item xs={5}>
-                <TextFooter fs="12px" textdecoration="none">
-                  Brand Guidelines
-                </TextFooter>
-              </Grid>
-              <Grid item xs={5}>
-                <TextFooter fs="12px" textdecoration="none">
-                  Thỏa thuận sử dụng
-                </TextFooter>
-              </Grid>
-              <Grid item xs={5}>
-                <TextFooter fs="12px" textdecoration="none">
-                  Chính sách bảo mật
-                </TextFooter>
-              </Grid>
+    //
+    <>
+      <BackGroundFooter>
+        <Container maxWidth="lg">
+          <Grid container spacing={4}>
+            <Grid item xs={12} sm={6} md={3}>
+              <ul
+                style={{
+                  listStyleType: "none",
+                  textDecoration: "none",
+                  lineHeight: "2",
+                }}
+              >
+                <TextTitle as="h4" color="dark" fs="18px" fw="bold">
+                  GIỚI THIỆU
+                </TextTitle>
+                <li> Về chúng tôi</li>
+                <li>Thỏa thuận sử dụng</li>
+                <li>Quy chế hoạt động</li>
+                <li>Chính sách bảo mật</li>
+              </ul>
             </Grid>
-          </Box>
-          <Box>
-            <TextTitle color="white" fs="12px">
-              Hệ Thống Rạp
-            </TextTitle>
-            <Box
-              sx={{ display: "grid", gridTemplateColumns: "repeat(2, 120px)" }}
-            >
-              {data.map((item) => {
-                return (
-                  <LogoFooter key={item.maHeThongRap}>
-                    <img
-                      src={item.logo}
-                      alt={item.tenHeThongRap}
-                      width="100%"
-                      height="100%"
-                      style={{ display: "inline-block" }}
-                    />
+            <Grid item xs={12} sm={6} md={3}>
+              <ul
+                style={{
+                  listStyleType: "none",
+                  textDecoration: "none",
+                  lineHeight: "2",
+                }}
+              >
+                <TextTitle as="h4" color="dark" fs="18px" fw="bold">
+                  GÓC ĐIỆN ẢNH
+                </TextTitle>
+                <li>Thể loại phim</li>
+                <li>Bình luận phim</li>
+                <li>Blog điện ảnh</li>
+                <li>Phim hay tháng</li>
+              </ul>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <ul
+                style={{
+                  listStyleType: "none",
+                  textDecoration: "none",
+                  lineHeight: "2",
+                }}
+              >
+                <TextTitle as="h4" color="dark" fs="18px" fw="bold">
+                  HỖ TRỢ
+                </TextTitle>
+                <li>Góp ý</li>
+                <li>Sale & Services</li>
+                <li>Rạp/Giá vé</li>
+                <li>Tuyển dụng</li>
+                <li>FAQ</li>
+              </ul>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <img
+                src="./logo.jpg"
+                width={50}
+                height={50}
+                style={{ borderRadius: "50%" }}
+              />
+
+              {/* Add your logo here */}
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 120px)",
+                }}
+              >
+                <Box>
+                  <LogoFooter
+                    href="#"
+                    target="_blank"
+                    display="flex"
+                    alignItems="center"
+                  >
+                    <GitHubIcon fontSize="large" />
+                    <TextFooter ml="10px">GitHub</TextFooter>
                   </LogoFooter>
-                );
-              })}
-            </Box>
-          </Box>
-          <Box>
-            <TextTitle color="white" fs="12px">
-              Contact
-            </TextTitle>
-            <Box>
-              <Box>
-                <LogoFooter
-                  href="https://github.com/MQ1907/classes.git"
-                  target="_blank"
-                  display="flex"
-                  alignItems="center"
-                >
-                  <GitHubIcon fontSize="large" />
-                  <TextFooter ml="10px">GitHub</TextFooter>
-                </LogoFooter>
+                </Box>
+                <Box>
+                  <LogoFooter
+                    href="#"
+                    target="_blank"
+                    display="flex"
+                    alignItems="center"
+                  >
+                    <Facebook fontSize="large" />
+                    <TextFooter ml="10px">FaceBook</TextFooter>
+                  </LogoFooter>
+                </Box>
+
+                {data.map((item) => {
+                  return (
+                    <LogoFooter key={item.maHeThongRap}>
+                      <img
+                        src={item.logo}
+                        alt={item.tenHeThongRap}
+                        width="100%"
+                        height="100%"
+                        style={{ display: "inline-block" }}
+                      />
+                    </LogoFooter>
+                  );
+                })}
               </Box>
-              <Box>
-                <LogoFooter
-                  href="https://www.facebook.com/profile.php?id=100013845758286"
-                  target="_blank"
-                  display="flex"
-                  alignItems="center"
-                >
-                  <Facebook fontSize="large" />
-                  <TextFooter ml="10px">FaceBook</TextFooter>
-                </LogoFooter>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-      </Container>
-    </BackGroundFooter>
+            </Grid>
+          </Grid>
+        </Container>
+        <p
+          style={{
+            textAlign: "center",
+            paddingTop: "32px",
+          }}
+        >
+          © 2018 Movie Seat Selection . All Rights Reserved | Design by
+          <a href="#" target="_blank">
+            DHN Cinema
+          </a>
+        </p>
+      </BackGroundFooter>
+    </>
   );
 }

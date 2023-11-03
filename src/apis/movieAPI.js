@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import fetcher from "./fetcher";
 
 export async function getBanner() {
@@ -14,7 +14,7 @@ export async function getMovie() {
   try {
     const response = await fetcher.get("/QuanLyPhim/LayDanhSachPhim", {
       params: {
-        maNhom: "GP13",
+        maNhom: "GP01",
       },
     });
     return response.data.content;
@@ -39,7 +39,7 @@ export async function getMovieDetails(movieId) {
 export async function addMovie(movie) {
   try {
     const response = await fetcher.post(
-      "/QuanLyPhim/ThemPhimUpLoadHinh",
+      "/quanlyphim/themphimuploadhinh",
       movie
     );
     return response.data?.content;

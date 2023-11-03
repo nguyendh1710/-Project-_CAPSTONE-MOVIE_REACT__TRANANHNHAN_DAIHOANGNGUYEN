@@ -1,1 +1,1 @@
-export { default } from "./ShowList";
+export {default} from './ShowingList'

@@ -1,7 +1,10 @@
 import React from "react";
+
 import { Carousel } from "react-bootstrap";
+import { CusCarousel } from './Banner.styles'
 import { useQuery } from "@tanstack/react-query";
 import { getBanner } from "../../../apis/movieAPI";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export default function Banner() {
   const {
@@ -14,10 +17,12 @@ export default function Banner() {
     <h1>Loading...</h1>;
   }
   return (
-    <Carousel>
+    
+   
+      <CusCarousel >
       {banners.map((banner) => {
         return (
-          <Carousel.Item key={banner.maBanner} style={{ height: "100vh" }}>
+          <Carousel.Item key={banner.maBanner} style={{ height: "80vh" }}>
             <img
               src={banner.hinhAnh}
               alt=""
@@ -27,6 +32,8 @@ export default function Banner() {
           </Carousel.Item>
         );
       })}
-    </Carousel>
+      </CusCarousel>
+   
+    
   );
 }

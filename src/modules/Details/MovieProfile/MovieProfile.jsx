@@ -1,78 +1,124 @@
-import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
-import { getMovieDetails } from "../../../apis/movieAPI";
-import { Box, Button, Container, Modal, Rating, Typography } from "@mui/material";
-import dayjs from "dayjs";
-import ReactPlayer from "react-player";
+import React from 'react'
+import {MovieCard,MovieCardContent,MovieCardMedia,Rating,GradientButton}from './MovieProfile.styles'
+import { Box, Grid, Typography,Button } from '@mui/material';
+import Showtimes from '../Showtimes';
+import { useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import {getMovieDetails} from'../../../apis/movieAPI'
+import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
+import Loading from '../../../components/Loading/Loading';
 
-export default function MovieProfile({ movieId }) {
-   const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
-  const handleOpen = () => setOpen(true);
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-  const { data: movie = [], isLoading } = useQuery({
-    queryKey: ["movieProfile", movieId],
-    queryFn: () => getMovieDetails(movieId),
-  });
-  console.log(movie);
+
+
+
+
+export default function MovieProfile() {
+
+// cài đặt useNavigate đẻ điều hướng
+
+const navigate=useNavigate();
+
+// gọi useParams lấy dữ liệu movieId trên url (đã khai báo key trên url của Component App là movieId nên bó tách movieId)
+
+const {movieId} = useParams();
+//-------------------------------đặt state và tạo  hàm show mã hệ thồng rạp -->state phải đặt đầu tiên để không báo lỗi
+
+//---------------------------xử lý dữ liệu API với useQuery-----------------------------
+  // // để luôn hiển thị rạp đầu tiên thì dùng useEffect-->state phải đặt đầu tiên để không báo lỗi vì lấy dc dữ liệu
+//-----------hoặc------------ dùng thêm onSucess của useQuery để set giá trị đầu tiên khi call API thành công
+  
+const { data =[], isLoading, error } =useQuery({queryKey:['MovieShowtimes',movieId], queryFn:()=>getMovieDetails(movieId),enable: !!movieId});
+
+
+
+
+
+
+// Loading...
+if (isLoading) {
+
+
+{return (
+
+      <>
+      
+             <Loading/>
+      
+      </>
+
+)}
+          
+}
+
+
+//----------------------- đặt biến cinemaSystems để map dữ liệu call từ API-->phải để ở đây vì sẽ báo báo lỗi MovieShowtimes chưa khỏi tạo nếu để trước khi dùng biến MovieShowtimes
+// để thêm || [] để ban đầu khi call API hàm map không báo lỗi do map cần 1 mảng
+const cinemaSystems= data || []
+
+
+
+
+//--------------format ngày tháng
+
+const time = dayjs(cinemaSystems.ngayKhoiChieu).format("DD-MM-YYYY ~ HH:mm");     
+
+
+  
+
+console.log(cinemaSystems)
+
+
+
   return (
-    <Container sx={{ paddingTop: "100px" }}>
-      <Box display={"flex"}>
-        <Box
-          sx={{
-            display: "flex",
-            borderRadius: "5px",
-            marginBottom: "10px",
-          }}
-        >
-          <img
-            src={movie.hinhAnh}
-            alt={movie.tenPhim}
-            width={"50%"}
-            height={"314px"}
-            style={{ borderRadius: "5px" }}
-          />
-          <Box sx={{ paddingLeft: "10px" }}>
-            <Typography variant="h5" component="h4">
-              {dayjs(movie.ngayKhoiChieu).format("DD-MM-YYYY")}
-            </Typography>
-            <Typography variant="h4" component="h3" m={"10px 0"}>
-              {movie.tenPhim}
-            </Typography>
-            <Button variant="contained" color="primary" onClick={handleOpen}>
-              Trailer
-            </Button>
-            <Box sx={{ marginTop: "10px" }}>
-              <Rating
-                readOnly={true}
-                name="customized-10"
-                defaultValue={Number(movie.danhGia)}
-                value={Number(movie.danhGia)}
-                max={10}
-              />
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "50%",
-            height: "50%",
-          }}
-        >
-          <ReactPlayer width={"100%"} height={"100%"} url={movie.trailer} />
-        </Box>
-      </Modal>
-    </Container>
-  );
+    
+
+
+<Box sx={{ flexGrow: 1, paddingTop: '70px' }}>
+      <Grid container justifyContent="center">
+        <Grid item xs={12} md={9}>
+          <MovieCard>
+
+
+
+          <MovieCardMedia
+              component="img"
+              image={cinemaSystems.hinhAnh}
+              alt="Random movie poster"
+              
+            />
+            <MovieCardContent >
+              <Typography variant="h5" component="h2">
+                {cinemaSystems.tenPhim}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                 {time}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                 <Box width={700}>{cinemaSystems.moTa}</Box>
+              </Typography>
+              <Rating variant="body2" color="text.secondary">
+                ★★★★☆
+              </Rating>
+              <Typography variant="body2" color="text.secondary">
+                <Showtimes/>
+              </Typography>
+       
+            </MovieCardContent> 
+
+
+          </MovieCard>
+        </Grid>
+        
+      </Grid>
+    </Box>
+
+
+// {
+
+//       
+   
+  )
 }
