@@ -47,6 +47,6 @@ export const BackGroundFooter = styled.section`
 background-color:#2121;
 padding-top: 50px;
 height: 50vh;
-display: flex;
+
 
 `

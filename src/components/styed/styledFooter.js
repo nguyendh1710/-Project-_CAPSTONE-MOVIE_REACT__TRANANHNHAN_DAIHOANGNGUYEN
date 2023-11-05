@@ -5,10 +5,10 @@ export const LogoFooter = styled.a`
   align-items: ${(props) => props.alignItems};
   color: "white";
   text-decoration: none;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  color: #ffffff80;
+  color: rgba(7, 7, 7, 0.11);
   margin-top: 20px;
   cursor: pointer;
   transition: all 0.5s;

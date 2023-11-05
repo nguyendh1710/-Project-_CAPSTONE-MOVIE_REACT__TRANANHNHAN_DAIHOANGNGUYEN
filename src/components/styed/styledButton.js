@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  background-color: #c2d32f;
+  background-color:   #FE6B8B ;
   color: white;
   padding: ${(props) => props.p};
   margin: ${(props) => props.m};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: 5px;
-  border: 1px solid #c2d32f;
+  border: 1px solid #FF8E53;
   cursor: pointer;
   transition: all 0.5s;
   &:hover {
-    background-color: #c2632f;
+    background-color:  #8b0623 ;
   }
 `;
 
@@ -28,7 +28,7 @@ export const ButtonMovie = styled.div`
 `;
 
 export const ButtonCinema = styled.button`
-  color: #108f3e;
+  color: rgba(241, 239, 243, 0.93);
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
@@ -40,7 +40,7 @@ export const ButtonCinema = styled.button`
   background-color: rgba(246, 246, 246, 0.5);
   transition: all 0.3s;
   &:hover {
-    color: red;
+    color: greenyellow;
     font-weight: bold;
   }
 `;

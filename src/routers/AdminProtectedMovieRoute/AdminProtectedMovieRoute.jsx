@@ -10,12 +10,12 @@ export default function ProtectedRoute({ children }) {
 
   if (!currentUser) {
     //User chưa đăng nhập => redirect về trang login
-    const url = `/sign-in?redirectTo=${location.pathname}`;
+    const url = `/signin?redirectTo=${location.pathname}`;
     return <Navigate to={url} replace />;
   }
 
   if(currentUser.maLoaiNguoiDung !== "QuanTri"){
-      return <Navigate to="/404"/>
+      return <Navigate to="*"/>
   }
 
   return children || <Outlet />;

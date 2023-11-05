@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { Box, Chip, Container, Grid, Typography } from "@mui/material";
+import {CusContainer} from './Cinema.style'
 import dayjs from "dayjs";
 import { Item } from "../../styledModules";
 import { ButtonCinema } from "../../../components/styed/styledButton";
@@ -10,6 +11,11 @@ import {
   getInfoTheater,
   getTheaterShowtimes,
 } from "../../../apis/cinemaAPI";
+import cover from "./../../../components/assets/cinemaBg.avif";
+
+
+
+
 
 export default function Cinema({ theaterId }) {
   const [infoTheaters, setInfoTheater] = useState([]);
@@ -68,6 +74,15 @@ export default function Cinema({ theaterId }) {
   // }
 
   return (
+    <Box sx={{
+      backgroundImage: `url(${cover})`,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundBlendMode:"rgba(0, 0,0, 0.4)",
+      height: "585px",
+
+
+    }}>
     <Container
       sx={{
         margin: "100px auto",
@@ -76,10 +91,13 @@ export default function Cinema({ theaterId }) {
         height: "80vh",
         overflow: "hidden",
         boxShadow: " rgba(0, 0, 0, 0.56) 0px 22px 70px 4px",
-        backgroundColor: "#ffffffef",
+        // backgroundColor: "rgba(0, 0,0, 0.4)",
+       
       }}
       id="cinema"
     >
+   
+      <h1 className="text-center fw-bold text-white">LỊCH CHIẾU</h1>
       <Grid container>
         <Grid item xs={1}>
           <Box sx={{ marginTop: "10px" }}>
@@ -120,10 +138,10 @@ export default function Cinema({ theaterId }) {
                       )
                     }
                   >
-                    <Typography sx={{ color: "#3ae374", fontWeight: "bold" }}>
+                    <Typography sx={{ color: "#ffff", fontWeight: "bold" }}>
                       {infoTheater.tenCumRap}
                     </Typography>
-                    <Typography variant="body2">
+                    <Typography variant="body2" sx={{ color: "rgba(17, 110, 153, 0.301)"}}>
                       {infoTheater.diaChi}
                     </Typography>
                   </Item>
@@ -150,14 +168,14 @@ export default function Cinema({ theaterId }) {
                         key={phim.maPhim}
                       >
                         <Grid item xs={4} sx={{ padding: "15px" }}>
-                          <img src={phim.hinhAnh} alt="hinhAnh" width="100%" />
+                          <img src={phim.hinhAnh} alt="hinhAnh" width="50%" />
                         </Grid>
                         <Grid item xs={8}>
                           <Box sx={{ marginLeft: "10px" }}>
                             <Box display={"flex"} alignItems={"center"}>
                               <Typography
                                 sx={{
-                                  color: "#3ae374",
+                                  color: "#e33a48",
                                   fontSize: "25px",
                                   fontWeight: "bold",
                                 }}
@@ -198,6 +216,8 @@ export default function Cinema({ theaterId }) {
           </Box>
         </Grid>
       </Grid>
+      
     </Container>
+    </Box>
   );
 }

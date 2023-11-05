@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const SigninAndSignup = styled.button`
-  color: #9e9e9e;
+  color:  #808080;
   cursor: pointer;
   display: flex;
   padding: 0px 8px;
@@ -14,7 +14,7 @@ export const SigninAndSignup = styled.button`
   transition: all 0.5s;
 
   &:hover {
-    color: #d32f2f;
+    color: #3f2fd3;
   }
 `;
 

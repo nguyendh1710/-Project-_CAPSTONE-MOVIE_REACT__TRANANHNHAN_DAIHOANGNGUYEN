@@ -1,19 +1,39 @@
 import fetcher from "./fetcher";
 
-export const signin = async (payload) => {
-  console.log(payload);
+// hàm post người dùng (đăng nhập) gửi lên API
+export async function signin(payload) {
   try {
-    const response = await fetcher.post("/QuanLyNguoiDung/DangNhap", payload);
-    console.log(response);
-    return response.data?.content;
-  } catch (error) {
-    throw error.response?.data?.content;
+
+      const response = await fetcher.post('/quanlynguoidung/dangnhap/',payload);
+      // thêm ? optional chaining vào data để kiểm tra có dữ liệu thì trả chứ không báo lỗi
+      return (response.data?.content);
+    
+  } catch  (error){
+     
+      throw (error.response.data?.content);
+    }
+
+
+        
+//////////////////////////////////////////////////////
+
+// axios.post('/quanlynguoidung/dangnhap', payload)
+//   .then((response) => {
+//     return (response.data?.content);
+//   })
+//   .catch((error) => {
+//     return (error.response.data?.content);
+//   });
+
+
+
   }
-};
+
+  //signin(payload);
 
 export const signup = async (payload) => {
   try {
-    const response = await fetcher.post("/QuanLyNguoiDung/DangKy", payload);
+    const response = await fetcher.post("/quanlynguoidung/dangKy", payload);
     return response.data?.content;
   } catch (error) {
     throw error.response?.data?.content;

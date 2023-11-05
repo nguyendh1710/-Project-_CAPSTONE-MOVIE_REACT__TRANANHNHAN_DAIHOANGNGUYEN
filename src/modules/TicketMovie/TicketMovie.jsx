@@ -50,28 +50,10 @@ export default function TicketMovie() {
       >
         <Container
           sx={{ paddingTop: "30px", zIndex: "100", position: "relative" }}
+          xs={12}
+          md={4}
         >
-          <Grid
-            container
-            spacing={10}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Grid
-              item
-              xs={12}
-              md={8}
-              sx={{ overflow: "hidden", maxWidth: "100%" }}
-            >
-              <TicketPage showtimeId={showtimeId} />
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Ticket ticketInfo={ticketInfo} />
-            </Grid>
-          </Grid>
+          <TicketPage showtimeId={showtimeId} ticketInfo={ticketInfo} />
         </Container>
       </Box>
     </TicketProvider>

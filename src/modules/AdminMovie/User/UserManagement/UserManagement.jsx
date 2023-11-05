@@ -33,13 +33,6 @@ import AddUser from "./AddUser/AddUser";
 import UpdateHuman from "./UpdateUser/UpdateUser";
 import Loading from "../../../../components/Loading/Loading";
 
-
-
-
-
-
-
-
 export default function UserManagement() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -69,7 +62,6 @@ export default function UserManagement() {
       queryClient.invalidateQueries({ queryKey: ["customer"] });
     },
   });
-
 
   const handleOpen = (username) => {
     setUserName(username);
@@ -132,85 +124,91 @@ export default function UserManagement() {
 
   return (
     <>
-    <Container maxWidth="xl" >
-      <Box height={100} />
-      <Box display={"flex"} justifyContent={"right"} mb={2}>
-        <Button
-          variant="contained"
-          color="success"
-          onClick={handleOpenAddUser}
+      <Container maxWidth="xl">
+        <Box height={100} />
+        <Typography
+          sx={{ color: "grey", fontSize: "35px", textAlign: "center" }}
         >
-          Thêm người dùng
-        </Button>
-      </Box>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-          <TableHead>
-            <StyledTableRow>
-              <StyledTableCell component="th" scope="row">
-                Tài khoản
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                Mật khẩu
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                Email
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                Họ tên
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                Số điện thoại
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                Mã người dùng
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                Chức năng
-              </StyledTableCell>
-            </StyledTableRow>
-          </TableHead>
-          <TableBody>
-            {customers.map((customer) => (
-              <StyledTableRow key={customer.taiKhoan}>
-                <StyledTableCell>{customer.taiKhoan}</StyledTableCell>
-                <StyledTableCell>{customer.matKhau}</StyledTableCell>
-                <StyledTableCell>{customer.email}</StyledTableCell>
-                <StyledTableCell>{customer.hoTen}</StyledTableCell>
-                <StyledTableCell>{customer.soDT}</StyledTableCell>
-                <StyledTableCell>{customer.maLoaiNguoiDung}</StyledTableCell>
-                <StyledTableCell>
-                  <Box>
-                    <IconButton
-                      aria-label="update"
-                      size="large"
-                      onClick={() => {
-                        handleOpen(customer.taiKhoan);
-                      }}
-                    >
-                      <EditIcon fontSize="inherit" color="primary" />
-                    </IconButton>
-                    <IconButton
-                      aria-label="delete"
-                      size="large"
-                      onClick={() => {
-                        setOpenDelete(true);
-                        setSelectedUser(customer.taiKhoan);
-                      }}
-                    >
-                      <DeleteIcon fontSize="inherit" color="error" />
-                    </IconButton>
-                  </Box>
+          Quản lý người dùng
+        </Typography>
+
+        <Box display={"flex"} justifyContent={"right"} mb={2}>
+          <Button
+            variant="contained"
+            color="warning"
+            style={{
+              marginLeft: "850px",
+            }}
+            onClick={handleOpenAddUser}
+          >
+            Thêm người dùng
+          </Button>
+        </Box>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+            <TableHead>
+              <StyledTableRow>
+                <StyledTableCell component="th" scope="row">
+                  Tài khoản
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row">
+                  Mật khẩu
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row">
+                  Email
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row">
+                  Họ tên
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row">
+                  Số điện thoại
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row">
+                  Mã người dùng
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row">
+                  Chức năng
                 </StyledTableCell>
               </StyledTableRow>
-            ))}
-         
-          </TableBody>
-         
-        </Table>
-      </TableContainer>
-
-    </Container>
+            </TableHead>
+            <TableBody>
+              {customers.map((customer) => (
+                <StyledTableRow key={customer.taiKhoan}>
+                  <StyledTableCell>{customer.taiKhoan}</StyledTableCell>
+                  <StyledTableCell>{customer.matKhau}</StyledTableCell>
+                  <StyledTableCell>{customer.email}</StyledTableCell>
+                  <StyledTableCell>{customer.hoTen}</StyledTableCell>
+                  <StyledTableCell>{customer.soDT}</StyledTableCell>
+                  <StyledTableCell>{customer.maLoaiNguoiDung}</StyledTableCell>
+                  <StyledTableCell>
+                    <Box>
+                      <IconButton
+                        aria-label="update"
+                        size="large"
+                        onClick={() => {
+                          handleOpen(customer.taiKhoan);
+                        }}
+                      >
+                        <EditIcon fontSize="inherit" color="success" />
+                      </IconButton>
+                      <IconButton
+                        aria-label="delete"
+                        size="large"
+                        onClick={() => {
+                          setOpenDelete(true);
+                          setSelectedUser(customer.taiKhoan);
+                        }}
+                      >
+                        <DeleteIcon fontSize="inherit" color="error" />
+                      </IconButton>
+                    </Box>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
 
       {/* Modal update user */}
       <Modal
@@ -336,13 +334,12 @@ export default function UserManagement() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: 400,
-            bgcolor: "#fff",
+            bgcolor: "lavender",
             border: "1px solid #fff",
             boxShadow: 24,
             p: 4,
           }}
         >
-         
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {error}
           </Typography>
@@ -363,15 +360,14 @@ export default function UserManagement() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: 400,
-            bgcolor: "#fff",
+            bgcolor: "lavender",
+
             border: "1px solid #fff",
             boxShadow: 24,
             p: 4,
           }}
         >
-          <Box display={"flex"} justifyContent={"center"}>
-           
-          </Box>
+          <Box display={"flex"} justifyContent={"center"}></Box>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Xóa người dùng thành công
           </Typography>

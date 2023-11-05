@@ -12,6 +12,7 @@ import { Button } from "../../../../components/styed/styledButton";
 import { useQuery } from "@tanstack/react-query";
 import { getMovieShowTimes } from "../../../../apis/cinemaAPI";
 import dayjs from "dayjs";
+import { Label } from "@mui/icons-material";
 
 export default function ShowingSelect({ listFilms }) {
   const [film, setFilm] = React.useState("");
@@ -27,7 +28,7 @@ export default function ShowingSelect({ listFilms }) {
     enabled: !!film,
   });
 
-  console.log(dateCinemas);
+  // console.log(dateCinemas);
 
   const handleChangeFilm = (event) => {
     setFilm(event.target.value);
@@ -57,20 +58,20 @@ export default function ShowingSelect({ listFilms }) {
   };
 
   return (
-    <Container sx={{ padding: "10px" }}>
+    <Container sx={{ padding: "10px" }} style={{ position: 'absolute' , top: '490px', left: '150px', zIndex: '9'}}>
       <Box
         display={"flex"}
         justifyContent={"space-between"}
-        sx={{ padding: "10px" }}
+        sx={{ padding: "5px" }}
       >
-        <Box sx={{ minWidth: 1 / 4 }}>
+        <Box sx={{ minWidth: 1 / 4 }}  bgcolor={'antiquewhite'} >
           <FormControl fullWidth>
             <InputLabel id="label-phim">Phim</InputLabel>
             <Select
               labelId="label-phim"
               id="phim"
               value={film}
-              label="Phim"
+              placeholder="Phim"
               onChange={handleChangeFilm}
             >
               <MenuItem value={0}>Chọn phim</MenuItem>
@@ -84,14 +85,14 @@ export default function ShowingSelect({ listFilms }) {
             </Select>
           </FormControl>
         </Box>
-        <Box sx={{ minWidth: 1 / 4 }}>
+        <Box sx={{ minWidth: 1 / 4 }}  bgcolor={'antiquewhite'}>
           <FormControl fullWidth>
             <InputLabel id="label-rap">Rạp</InputLabel>
             <Select
               labelId="label-rap"
               id="rap"
               value={cinema}
-              label="Rạp"
+              placeholder="Rạp"
               onChange={handleChangeCinema}
             >
               <MenuItem value="">Chọn rạp</MenuItem>
@@ -106,15 +107,16 @@ export default function ShowingSelect({ listFilms }) {
             </Select>
           </FormControl>
         </Box>
-        <Box sx={{ minWidth: 1 / 4 }}>
-          <FormControl fullWidth>
+        <Box sx={{ minWidth: 1 / 4 }}  bgcolor={'antiquewhite'} >
+          <FormControl fullWidth >
             <InputLabel id="label-time">Ngày giờ chiếu</InputLabel>
             <Select
               labelId="label-time"
               id="time"
               value={dayTime}
-              label="Ngày giờ chiếu"
+              placeholder="Ngày giờ chiếu"
               onChange={handleChangeDayTime}
+             
             >
               <MenuItem value="">Chọn ngày giờ chiếu</MenuItem>
               {dateCinemas.map((listShowTime) => {
@@ -135,13 +137,13 @@ export default function ShowingSelect({ listFilms }) {
             </Select>
           </FormControl>
         </Box>
-        <Box sx={{ minWidth: 1 / 5 }}>
+        <Box sx={{ minWidth: 1 / 5 }} marginRight={25}>
           <Button
             width="100%"
             height="100%"
             onClick={() => navigate(`tickets/${dayTime}`)}
           >
-            Mua vé
+            Mua vé nhanh
           </Button>
         </Box>
       </Box>
